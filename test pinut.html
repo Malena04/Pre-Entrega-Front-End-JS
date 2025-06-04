@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Pinturería Joselin</title>
+    <link rel="stylesheet" href="fuentesyeso.css" />
+    <style>
+        /* Estilo base comun */
+        * {
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+        }
+
+        header {
+            background: #4a90e2;
+            padding: 20px;
+            text-align: center;
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            background: #f0f0f0;
+            margin: 0;
+        }
+
+        nav ul li a {
+            text-decoration: none;
+            color: blue;
+            cursor: pointer;
+            padding: 10px;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        /* Productos con el flexbox */
+        .productos-grid {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        .producto-card {
+            background: #f9f9f9;
+            border: 1px solid #ccc;
+            padding: 15px;
+            width: 250px;
+            border-radius: 8px;
+            text-align: center;
+            cursor: default;
+            /* para que no sean clickeables los pinceles */
+            transition: background-color 0.3s ease;
+        }
+
+        /* para que si sea clickeable las pinturas */
+        .producto-card.latex {
+            cursor: pointer;
+        }
+
+        .producto-card h3 {
+            margin-top: 0;
+        }
+
+        /* reseñas con grid*/
+        #reseñas {
+            margin-top: 40px;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .review {
+            border: 1px solid #ccc;
+            padding: 15px;
+            border-radius: 8px;
+            background: #f4f4f4;
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+        }
+
+        .review img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            object-fit: cover;
+        }
+
+        .review h4 {
+            margin: 0 0 5px 0;
+        }
+
+        .stars img {
+            width: 16px;
+            height: 16px;
+            margin-right: 2px;
+        }
+
+        /* Formulario de contacto */
+        #form-contacto {
+            display: none;
+            margin-top: 20px;
+            border: 1px solid #ccc;
+            padding: 15px;
+            max-width: 400px;
+            background: #f9f9f9;
+        }
+
+        #form-contacto label {
+            font-weight: bold;
+        }
+
+        #form-contacto input,
+        #form-contacto textarea {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+            margin-bottom: 15px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+
+        #form-contacto button {
+            background-color: blue;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #form-contacto button:hover {
+            background-color: darkblue;
+        }
+
+        @media (max-width: 600px) {
+            #form-contacto {
+                width: 100%;
+                padding: 10px;
+            }
+
+            .productos-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Pinturería Joselin</h1>
+    </header>
+
+    <nav>
+        <ul>
+            <li><a href="javascript:void(0)" id="link-productos">Productos</a></li>
+            <li><a href="#inicio">Inicio</a></li>
+            <li><a href="#nosotros">Nosotros</a></li>
+            <li><a id="link-contacto" href="javascript:void(0)">Contáctanos</a></li>
+        </ul>
+    </nav>
+
+    <main>
+        <section id="inicio">
+            <h2>¡Todos los colores al alcance de tu pincel!</h2>
+        </section>
+
+        <section id="productos">
+            <h2>Productos</h2>
+            <div class="productos-grid">
+                <!-- Categoria Pintura -->
+                <div class="producto-card">
+                    <h3>Látex Interior 1L</h3>
+                    <p>Ideal para ambientes pequeños.</p>
+                </div>
+                <div class="producto-card">
+                    <h3>Látex Interior 5L</h3>
+                    <p>Rinde para una habitación completa.</p>
+                </div>
+                <div class="producto-card">
+                    <h3>Látex Interior 10L</h3>
+                    <p>Excelente para grandes espacios.</p>
+                </div>
+                <div class="producto-card">
+                    <h3>Látex Interior 20L</h3>
+                    <p>Rendimiento industrial.</p>
+                </div>
+
+                <!-- Categoria Suplementos -->
+                <div class="producto-card">
+                    <h3>Pincel Nº1</h3>
+                    <p>Perfecto para detalles.</p>
+                </div>
+                <div class="producto-card">
+                    <h3>Pincel Nº3</h3>
+                    <p>Uso general.</p>
+                </div>
+                <div class="producto-card">
+                    <h3>Pincel Nº5</h3>
+                    <p>Cobertura amplia.</p>
+                </div>
+            </div>
+        </section>
+
+        <section id="nosotros">
+            <h2>
+                Somos una pinturería industrial, Abrimos hace más de 50 años y seguimos siendo
+                la mejor
+                opción para cualquier color.
+            </h2>
+            <div id="redes-sociales" style="display: none; margin-top: 15px;">
+                <p>Nos ubicamos en Avenida Siempre Viva 742</p>
+                <p>Horario de 7:00 a 17:00</p>
+                <p>Seguinos en:</p>
+                <a href="https://facebook.com" target="_blank" aria-label="Facebook">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/5/51/Facebook_f_logo_%282019%29.svg/640px-Facebook_f_logo_%282019%29.svg.png" alt="Facebook" style="width:32px; height:32px;" />
+                </a>
+                <a href="https://instagram.com" target="_blank" aria-label="Instagram">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/95/Instagram_logo_2022.svg/640px-Instagram_logo_2022.svg.png" alt="Instagram" style="width:32px; height:32px;" />
+                </a>
+                <a href="https://x.com" target="_blank" aria-label="Twitter/X">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ce/X_logo_2023.svg/640px-X_logo_2023.svg.png" alt="Twitter/X" style="width:32px; height:32px;" />
+                </a>
+                <a href="https://www.youtube.com/watch?v=dQw4w9WgXcQ&ab_channel=RickAstley" target="_blank" aria-label="YouTube">
+                    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/09/YouTube_full-color_icon_%282017%29.svg/640px-YouTube_full-color_icon_%282017%29.svg.png" alt="YouTube" style="width:32px; height:32px;" />
+                </a>
+            </div>
+        </section>
+
+        <section id="reseñas">
+            <h2 style="text-align: center;">Reseñas de Clientes:</h2>
+
+            <!-- Grid con reviews -->
+            <div class="reviews-grid">
+                <div class="review">
+                    <img src="https://static.wikia.nocookie.net/forgottenrealms/images/1/16/Minthara_portrait.jpg/revision/latest?cb=20231010223630"
+                        alt="Foto Perfil Minthara" />
+                    <div>
+                        <h4>Minthara:</h4>
+                        <div class="stars">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Star_empty.svg"
+                                alt="estrella vacía" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Star_empty.svg"
+                                alt="estrella vacía" />
+                        </div>
+                        <p>Excelente atención y colores muy vivos.</p>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <img src="https://bg3.wiki/w/images/1/1b/Portrait_Astarion.png" alt="Foto Perfil Astarion" />
+                    <div>
+                        <h4>Astarion25:</h4>
+                        <div class="stars">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella vacía" />
+                        </div>
+                        <p>Compré pintura exterior, muy recomendable.</p>
+                    </div>
+                </div>
+
+                <div class="review">
+                    <img src="https://images.unsplash.com/photo-1586156665902-b787b5da9a72?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
+                        alt="Foto Perfil GaleCapo23" />
+                    <div>
+                        <h4>GaleCapo23:</h4>
+                        <div class="stars">
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/99/Star_icon_stylized.svg/640px-Star_icon_stylized.svg.png"
+                                alt="estrella llena" />
+                            <img src="https://upload.wikimedia.org/wikipedia/commons/4/49/Star_empty.svg"
+                                alt="estrella vacía" />
+                        </div>
+                        <p>Los pinceles son de muy buena calidad, me encantaron!</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="form-contacto">
+            <p>Ponete en contacto con nosotros, dejanos tu nombre, mail y tu consulta y responderemos cuando podamos.
+            </p>
+            <form action="https://formspree.io/f/mgvyegqe" method="POST">
+                <label for="nombre">Nombre:</label><br />
+                <input type="text" id="nombre" name="nombre" required /><br />
+
+                <label for="email">Correo electrónico:</label><br />
+                <input type="email" id="email" name="email" required /><br />
+
+                <label for="mensaje">Mensaje:</label><br />
+                <textarea id="mensaje" name="mensaje" rows="5" required></textarea><br />
+
+                <button type="submit">Enviar</button>
+            </form>
+        </section>
+    </main>
+
+    <script>
+        // contactanos toggle
+        const linkContacto = document.getElementById('link-contacto');
+        const formContacto = document.getElementById('form-contacto');
+
+        linkContacto.addEventListener('click', () => {
+            const computedDisplay = window.getComputedStyle(formContacto).display;
+            if (computedDisplay === 'none') {
+                formContacto.style.display = 'block';
+                setTimeout(() => {
+                    const yOffset = -100; // aumenté el valor negativo para subir más la vista
+                    const y = formContacto.getBoundingClientRect().top + window.pageYOffset + yOffset;
+                    window.scrollTo({ top: y, behavior: 'smooth' });
+                }, 100);
+            } else {
+                formContacto.style.display = 'none';
+            }
+        });
+
+
+
+        // productos toggle
+        const linkProductos = document.getElementById('link-productos');
+        const productosSection = document.getElementById('productos');
+
+        linkProductos.addEventListener('click', () => {
+            if (productosSection.style.display === 'block') {
+                productosSection.style.display = 'none';
+            } else {
+                productosSection.style.display = 'block';
+                productosSection.scrollIntoView({ behavior: 'smooth' });
+            }
+        });
+
+        const productos = document.querySelectorAll('.producto-card');
+
+        productos.forEach(producto => {
+            const titulo = producto.querySelector('h3').textContent;
+            if (titulo.includes('Látex')) {
+                producto.classList.add('latex');
+
+                producto.addEventListener('click', () => {
+                    const originalColor = window.getComputedStyle(producto).backgroundColor;
+
+                    // Convertir rgb a hex (función)
+                    function rgbToHex(rgb) {
+                        const result = rgb.match(/\d+/g);
+                        if (!result) return '#ffffff';
+                        return "#" + result.slice(0, 3).map(x => {
+                            const hex = parseInt(x).toString(16);
+                            return hex.length === 1 ? "0" + hex : hex;
+                        }).join('');
+                    }
+
+                    const existingMenu = document.getElementById('color-menu');
+                    if (existingMenu) existingMenu.remove();
+
+                    const menu = document.createElement('div');
+                    menu.id = 'color-menu';
+                    menu.style.position = 'fixed';
+                    menu.style.top = '50%';
+                    menu.style.left = '50%';
+                    menu.style.transform = 'translate(-50%, -50%)';
+                    menu.style.backgroundColor = '#fff';
+                    menu.style.padding = '15px';
+                    menu.style.border = '1px solid #ccc';
+                    menu.style.borderRadius = '8px';
+                    menu.style.boxShadow = '0 2px 10px rgba(0,0,0,0.2)';
+                    menu.style.zIndex = '1000';
+                    menu.style.display = 'flex';
+                    menu.style.flexDirection = 'column';
+                    menu.style.alignItems = 'center';
+                    menu.style.gap = '10px';
+
+                    const labelColor = document.createElement('label');
+                    labelColor.textContent = 'Seleccione un color:';
+                    labelColor.style.fontWeight = 'bold';
+
+                    const colorInput = document.createElement('input');
+                    colorInput.type = 'color';
+                    colorInput.value = rgbToHex(originalColor);
+
+                    const buttonsDiv = document.createElement('div');
+                    buttonsDiv.style.display = 'flex';
+                    buttonsDiv.style.gap = '10px';
+
+                    const btnAceptar = document.createElement('button');
+                    btnAceptar.textContent = 'Aceptar';
+                    btnAceptar.style.cursor = 'pointer';
+
+                    const btnCancelar = document.createElement('button');
+                    btnCancelar.textContent = 'Cancelar';
+                    btnCancelar.style.cursor = 'pointer';
+
+                    buttonsDiv.appendChild(btnAceptar);
+                    buttonsDiv.appendChild(btnCancelar);
+
+                    menu.appendChild(labelColor);
+                    menu.appendChild(colorInput);
+                    menu.appendChild(buttonsDiv);
+                    document.body.appendChild(menu);
+
+                    colorInput.addEventListener('input', () => {
+                        producto.style.backgroundColor = colorInput.value;
+                    });
+
+                    btnAceptar.addEventListener('click', () => {
+                        menu.remove();
+                    });
+
+                    btnCancelar.addEventListener('click', () => {
+                        producto.style.backgroundColor = originalColor;
+                        menu.remove();
+                    });
+
+                    function handleClickOutside(event) {
+                        if (!menu.contains(event.target)) {
+                            producto.style.backgroundColor = originalColor;
+                            menu.remove();
+                            document.removeEventListener('mousedown', handleClickOutside);
+                        }
+                    }
+
+                    document.addEventListener('mousedown', handleClickOutside);
+                });
+            }
+        });
+
+        const botonNosotros = document.querySelector('a[href="#nosotros"]');
+        const redes = document.getElementById("redes-sociales");
+
+        botonNosotros.addEventListener("click", (e) => {
+            e.preventDefault();
+
+            const isHidden = redes.style.display === "none" || redes.style.display === "";
+
+            if (isHidden) {
+                redes.style.display = "block";
+
+                redes.scrollIntoView({ behavior: "smooth", block: "start" });
+            } else {
+                redes.style.display = "none";
+            }
+        });
+    </script>
+
+    <footer>
+        <p>&copy; 2025 Pinturería Joselin - Página de prueba. Ningún producto es real.</p>
+    </footer>
+</body>
+
+</html>
